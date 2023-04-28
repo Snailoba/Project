@@ -1,7 +1,6 @@
 import React from "react";
 import { AppBar, Typography, Box, Button, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Calendar from "./Calendar";
 
 const boundaries = {
   margin: "50px",
@@ -18,7 +17,7 @@ const title = {
   fontSize: "25px",
   pl: 15,
 };
-const triplet = { display: { xs: "none", md: "flex" } };
+
 const butto = {
   backgroundColor: "#20232a",
   color: "white",
