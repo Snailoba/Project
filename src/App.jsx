@@ -1,22 +1,30 @@
 import React, { useState } from "react";
-import Box from "@mui/material";
-import "./App.css";
+import { Box } from "@mui/material";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Calendar from "./pages/Calendar";
+import Weather from "./pages/Weather";
+import Combinations from "./pages/Combinations";
+import Inventory from "./pages/Inventory";
+import Preferences from "./pages/Preferences";
+import Submit from "./pages/Submit";
+import Details from "./pages/Details";
 
 const App = () => {
   const [step, setStep] = useState(0);
   return (
-    <Box
-      display={"flex"}
-      flexDirection="column"
-      width={"100vw"}
-      height={"100vh"}
-      justifyContent={"center"}
-      alignItems={"center"}
-    >
-      {step === 0 && <Register setStep={setStep} />}
-      {step === 1 && <Login setStep={setStep} />}
-      {step === 2 && <Home />}
-    </Box>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/weather" element={<Weather />} />
+        <Route path="/combinations" element={<Combinations />} />
+        <Route path="/inventory" element={<Inventory />} />
+        <Route path="/preferences" element={<Preferences />} />
+        <Route path="/submit" element={<Submit />} />
+        <Route path="/details" element={<Details />} />
+      </Routes>
+    </>
   );
 };
 
