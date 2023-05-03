@@ -1,46 +1,105 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
-import React, { useRef, useState } from "react";
+import { Box, Button } from "@mui/material";
+import React, { useState } from "react";
+import "./Stubborn.css";
 
-const Register = ({ setStep }) => {
-  const inputRef = useRef();
-  const [errorMessage, setErrorMessage] = useState("");
+const container = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: 3,
+};
+const logo = {
+  position: "relative",
+};
+const logoText = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  fontFamily: "Girassol",
+  color: "white",
+  fontSize: "85px",
+};
+const submitButton = {
+  backgroundColor: "#E25822",
+  fontFamily: "Inika",
+  fontSize: "20px",
+  height: "10%",
+  width: "40%",
+  color: "black",
+  ":hover": {
+    backgroundColor: "#702963",
+    color: "white",
+  },
+  ":focus": {
+    outline: "none",
+  },
+};
+const type = {
+  backgroundColor: "#EED9C4",
+  fontFamily: "Inika",
+  color: "black",
+  borderRadius: 6,
+  border: "none",
+  outline: "none",
+  padding: "10px 10px",
+  fontSize: "20px",
+};
+const inputTag = {
+  fontFamily: "Inika",
+  color: "black",
+  textAlign: "left",
+  fontSize: "25px",
+};
+const inputContainer = {
+  display: "flex",
+  flexDirection: "column",
+  width: "55vh",
+};
+const space = { backgroundColor: "white", height: "2vh" };
+
+function Register() {
   const submitPassword = (e) => {
     e.preventDefault();
-    if (inputRef.current.value === "2513022") {
-      if (!setStep) {
-        setErrorMessage(
-          "hint : You entered the correct password, but it look like there's something wrong in your function please check the props"
-        );
-      } else {
-        setStep(1);
-      }
-    } else {
-      setErrorMessage("Incorrect password !, The password is 2513022");
-    }
   };
   return (
-    <Box
-      display={"flex"}
-      flexDirection="column"
-      gap={5}
-      component="form"
-      onSubmit={submitPassword}
-    >
-      <Typography variant="h2">Please, enter the password</Typography>
-
-      <TextField
-        inputRef={inputRef}
-        size="medium"
-        label="Password is 2513022"
-        variant="outlined"
-        error={!!errorMessage}
-      />
-      {errorMessage && <Typography color={"red"}>{errorMessage}</Typography>}
-      <Button type="submit" variant="contained" size="large" color="primary">
-        Submit password
+    <Box sx={container} onSubmit={submitPassword}>
+      <Box>
+        <Box sx={logo}>
+          <img
+            src="assets/logo.svg"
+            alt="hexagon"
+            style={{
+              width: "200px",
+              height: "200px",
+            }}
+          />
+          <Box sx={logoText}>Luco</Box>
+        </Box>
+      </Box>
+      <Box sx={inputContainer}>
+        <label for="uname" style={inputTag}>
+          Username
+        </label>
+        <input type="text" style={type} />
+        <Box sx={space} />
+        <label for="uname" style={inputTag}>
+          Password
+        </label>
+        <input type="text" style={type} />
+        <Box sx={space} />
+        <label for="uname" style={inputTag}>
+          Confirm Password
+        </label>
+        <input type="text" style={type} />
+      </Box>
+      <Box sx={space} />
+      <Button type="submit" variant="contained" sx={submitButton}>
+        Register
       </Button>
     </Box>
   );
-};
+}
 
 export default Register;

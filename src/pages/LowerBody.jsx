@@ -15,7 +15,7 @@ const menuContainer = {
 const title = {
   fontFamily: "Girassol",
   fontSize: "55px",
-  pl: 5,
+  pl: "1%",
 };
 const menuButton = {
   position: "absolute",
