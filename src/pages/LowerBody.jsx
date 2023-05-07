@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Typography, Modal, Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import "./Stubborn.css";
 
 const menuContainer = {
   background: "#32174D",
@@ -16,6 +17,10 @@ const title = {
   fontFamily: "Girassol",
   fontSize: "55px",
   pl: "1%",
+  color: "white",
+  "@media screen and (max-width: 1100px)": {
+    fontSize: "40px",
+  },
 };
 const menuButton = {
   position: "absolute",
@@ -39,10 +44,14 @@ const modalStyle = {
   bottom: 0,
   left: "auto",
   margin: "auto",
-  width: "25vw",
+  width: "25%",
   height: "100vh",
   bgcolor: "background.paper",
   boxShadow: 24,
+
+  "@media screen and (max-width: 1100px)": {
+    width: "70%",
+  },
 };
 const butto = {
   width: "100%",
@@ -72,6 +81,15 @@ const menuImage = {
   paddingRight: "13px",
   right: 0,
 };
+const inputTag = {
+  fontFamily: "Inika",
+  color: "black",
+  textAlign: "left",
+  fontSize: "25px",
+  "@media screen and (max-width: 1100px)": {
+    fontSize: "20px",
+  },
+};
 
 function LowerBody() {
   const navigate = useNavigate();
@@ -81,7 +99,7 @@ function LowerBody() {
   const handleClose = () => setOpen(false);
 
   function handleClickHome() {
-    navigate("/");
+    navigate("/home");
   }
   function handleClickCalendar() {
     navigate("/calendar");

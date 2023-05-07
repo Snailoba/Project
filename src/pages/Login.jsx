@@ -57,42 +57,47 @@ const inputContainer = {
   flexDirection: "column",
   width: "55vh",
 };
-const space = { backgroundColor: "white", height: "2vh" };
+const space = {
+  backgroundColor: "white",
+  height: "2vh",
+};
 
 function Login() {
   const submitPassword = (e) => {
     e.preventDefault();
   };
   return (
-    <Box sx={container} onSubmit={submitPassword}>
-      <Box>
-        <Box sx={logo}>
-          <img
-            src="assets/logo.svg"
-            alt="hexagon"
-            style={{
-              width: "200px",
-              height: "200px",
-            }}
-          />
-          <Box sx={logoText}>Luco</Box>
+    <Box>
+      <Box sx={container} onSubmit={submitPassword}>
+        <Box>
+          <Box sx={logo}>
+            <img
+              src="assets/logo.svg"
+              alt="hexagon"
+              style={{
+                width: "200px",
+                height: "200px",
+              }}
+            />
+            <Box sx={logoText}>Luco</Box>
+          </Box>
         </Box>
-      </Box>
-      <Box sx={inputContainer}>
-        <label for="uname" style={inputTag}>
-          Username
-        </label>
-        <input type="text" style={type} required />
+        <Box sx={inputContainer}>
+          <label for="texfil" style={inputTag}>
+            Username
+          </label>
+          <input type="text" className="texfil" style={type} required />
+          <Box sx={space} />
+          <label for="texfil" style={inputTag}>
+            Password
+          </label>
+          <input type="text" className="texfil" style={type} required />
+        </Box>
         <Box sx={space} />
-        <label for="uname" style={inputTag}>
-          Password
-        </label>
-        <input type="text" style={type} required />
+        <Button type="submit" variant="contained" sx={submitButton}>
+          Log in
+        </Button>
       </Box>
-      <Box sx={space} />
-      <Button type="submit" variant="contained" sx={submitButton}>
-        Log in
-      </Button>
     </Box>
   );
 }

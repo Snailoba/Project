@@ -16,6 +16,10 @@ const title = {
   fontFamily: "Girassol",
   fontSize: "55px",
   pl: "1%",
+  color: "white",
+  "@media screen and (max-width: 1100px)": {
+    fontSize: "40px",
+  },
 };
 const menuButton = {
   position: "absolute",
@@ -39,10 +43,14 @@ const modalStyle = {
   bottom: 0,
   left: "auto",
   margin: "auto",
-  width: "25vw",
+  width: "25%",
   height: "100vh",
   bgcolor: "background.paper",
   boxShadow: 24,
+
+  "@media screen and (max-width: 1100px)": {
+    width: "70%",
+  },
 };
 const butto = {
   width: "100%",
@@ -72,6 +80,68 @@ const menuImage = {
   paddingRight: "13px",
   right: 0,
 };
+const inputTag = {
+  fontFamily: "Inika",
+  color: "black",
+  textAlign: "left",
+  fontSize: "25px",
+  "@media screen and (max-width: 1100px)": {
+    fontSize: "20px",
+  },
+};
+const squarePref = {
+  width: "15em",
+  height: "15em",
+  backgroundColor: "#eed9c4",
+  border: "5px solid #eed9c4",
+  boxShadow: "inset 0 0 0 3px #32174d",
+  borderRadius: "10px",
+  marginRight: "20px",
+  marginBottom: "20px",
+
+  "@media screen and (max-width: 1100px)": {
+    display: "inline-block",
+    width: "13em",
+    height: "13em",
+  },
+};
+const buttonTextPref = {
+  position: "relative",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  fontFamily: "Inika",
+  color: "black",
+  fontSize: "25px",
+  "@media screen and (max-width: 1100px)": {
+    fontSize: "20px",
+  },
+};
+const conPref = {
+  display: "flex",
+  flexDirection: "row",
+  marginTop: "100px",
+
+  "@media screen and (max-width: 1100px)": {
+    flexDirection: "column",
+    width: "70vw",
+  },
+};
+const blocPref = {
+  display: "grid",
+  gridTemplateColumns: "repeat(2, 1fr)",
+
+  "@media screen and (max-width: 1100px)": {
+    display: "block",
+    overflowX: "scroll",
+    overflowY: "hidden",
+    whiteSpace: "nowrap",
+  },
+};
+const space = {
+  backgroundColor: "white",
+  width: "2vw",
+};
 
 function Preferences() {
   const navigate = useNavigate();
@@ -81,7 +151,7 @@ function Preferences() {
   const handleClose = () => setOpen(false);
 
   function handleClickHome() {
-    navigate("/");
+    navigate("/home");
   }
   function handleClickCalendar() {
     navigate("/calendar");
@@ -97,6 +167,9 @@ function Preferences() {
   }
   function handleClickPreference() {
     navigate("/preference");
+  }
+  function handleClickDetails() {
+    navigate("/details");
   }
   return (
     <>
@@ -114,6 +187,55 @@ function Preferences() {
               }}
             />
             <Box sx={buttonText}>Menu</Box>
+          </Box>
+        </Box>
+        <Box sx={conPref}>
+          <Box>
+            <Typography sx={inputTag}>Favorites</Typography>
+            <Box sx={blocPref}>
+              <Box sx={squarePref} onClick={handleClickDetails}>
+                <Box sx={buttonTextPref}>2023/03/11</Box>
+              </Box>
+              <Box sx={squarePref} onClick={handleClickDetails}>
+                <Box sx={buttonTextPref}>2023/04/17</Box>
+              </Box>
+              <Box sx={squarePref} onClick={handleClickDetails}>
+                <Box sx={buttonTextPref}>2023/05/12</Box>
+              </Box>
+              <Box sx={squarePref} onClick={handleClickDetails}>
+                <Box sx={buttonTextPref}>2023/06/21</Box>
+              </Box>
+              <Box sx={squarePref} onClick={handleClickDetails}>
+                <Box sx={buttonTextPref}>2023/10/29</Box>
+              </Box>
+              <Box sx={squarePref} onClick={handleClickDetails}>
+                <Box sx={buttonTextPref}>2023/11/01</Box>
+              </Box>
+            </Box>
+          </Box>
+          <Box sx={space}></Box>
+          <Box>
+            <Typography sx={inputTag}>Avoided</Typography>
+            <Box sx={blocPref}>
+              <Box sx={squarePref} onClick={handleClickDetails}>
+                <Box sx={buttonTextPref}>2023/05/18</Box>
+              </Box>
+              <Box sx={squarePref} onClick={handleClickDetails}>
+                <Box sx={buttonTextPref}>2023/05/25</Box>
+              </Box>
+              <Box sx={squarePref} onClick={handleClickDetails}>
+                <Box sx={buttonTextPref}>2023/07/10</Box>
+              </Box>
+              <Box sx={squarePref} onClick={handleClickDetails}>
+                <Box sx={buttonTextPref}>2023/08/04</Box>
+              </Box>
+              <Box sx={squarePref} onClick={handleClickDetails}>
+                <Box sx={buttonTextPref}>2023/08/16</Box>
+              </Box>
+              <Box sx={squarePref} onClick={handleClickDetails}>
+                <Box sx={buttonTextPref}>2023/09/23</Box>
+              </Box>
+            </Box>
           </Box>
         </Box>
       </Box>{" "}

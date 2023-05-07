@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Box } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Calendar from "./pages/Calendar";
@@ -11,23 +10,35 @@ import Submit from "./pages/Submit";
 import Details from "./pages/Details";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import UpperBody from "./pages/UpperBody";
+import LowerBody from "./pages/LowerBody";
+import Shoes from "./pages/Shoes";
+import Hats from "./pages/Hats";
+import OuterLayer from "./pages/OuterLayer";
+import Accessories from "./pages/Accessories";
 import "./App.css";
 
 const App = () => {
-  const [step, setStep] = useState(0);
   return (
     <>
-      {/*<Routes>
-        <Route path="/" element={<Home />} />
+      <Routes>
+        <Route path="/" element={<Login />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/weather" element={<Weather />} />
         <Route path="/combinations" element={<Combinations />} />
         <Route path="/inventory" element={<Inventory />} />
-        <Route path="/preferences" element={<Preferences />} />
+        <Route path="/preference" element={<Preferences />} />
         <Route path="/submit" element={<Submit />} />
         <Route path="/details" element={<Details />} />
-      </Routes> */}
-      <Login />
+        <Route path="/home" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/upper" element={<UpperBody />} />
+        <Route path="/lower" element={<LowerBody />} />
+        <Route path="/outer" element={<OuterLayer />} />
+        <Route path="/shoes" element={<Shoes />} />
+        <Route path="/hats" element={<Hats />} />
+        <Route path="/accessories" element={<Accessories />} />
+      </Routes>
     </>
   );
 };

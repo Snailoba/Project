@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Typography, Modal, Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import "./Stubborn.css";
 
 const menuContainer = {
   background: "#32174D",
@@ -16,6 +17,10 @@ const title = {
   fontFamily: "Girassol",
   fontSize: "55px",
   pl: "1%",
+  color: "white",
+  "@media screen and (max-width: 1100px)": {
+    fontSize: "40px",
+  },
 };
 const menuButton = {
   position: "absolute",
@@ -39,10 +44,14 @@ const modalStyle = {
   bottom: 0,
   left: "auto",
   margin: "auto",
-  width: "25vw",
+  width: "25%",
   height: "100vh",
   bgcolor: "background.paper",
   boxShadow: 24,
+
+  "@media screen and (max-width: 1100px)": {
+    width: "70%",
+  },
 };
 const butto = {
   width: "100%",
@@ -72,6 +81,73 @@ const menuImage = {
   paddingRight: "13px",
   right: 0,
 };
+const inputTag = {
+  fontFamily: "Inika",
+  color: "black",
+  textAlign: "left",
+  fontSize: "25px",
+  "@media screen and (max-width: 1100px)": {
+    fontSize: "20px",
+  },
+};
+const conHome = {
+  display: "flex",
+  flexDirection: "column",
+  marginTop: "100px",
+};
+const twin = {
+  display: "flex",
+  flexDirection: "row",
+  width: "50vw",
+};
+const showcase = {
+  width: "50vw",
+  display: "flex",
+  justifyContent: "center",
+  textAlign: "center",
+  flexDirection: "column",
+};
+const firstLayer = {
+  width: "70%",
+};
+const secondLayer = {
+  marginBottom: "10px",
+  width: "120px",
+};
+const squareDate = {
+  width: "100%",
+  height: "5vh",
+  backgroundColor: "#eed9c4",
+  borderRadius: "10px",
+  paddingLeft: "5px",
+};
+const squareWeather = {
+  width: "100%",
+  height: "5vh",
+  backgroundColor: "#eed9c4",
+  borderRadius: "10px",
+  paddingLeft: "5px",
+};
+const squareHome = {
+  width: "100%",
+  height: "65vh",
+  backgroundColor: "#eed9c4",
+  borderRadius: "10px",
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  overflow: "hidden",
+};
+const imag = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
+const outfitImages = {
+  maxWidth: "75%",
+  height: "auto",
+  border: "3px solid #32174d",
+  borderRadius: "10px",
+};
 
 function Home() {
   const navigate = useNavigate();
@@ -81,7 +157,7 @@ function Home() {
   const handleClose = () => setOpen(false);
 
   function handleClickHome() {
-    navigate("/");
+    navigate("/home");
   }
   function handleClickCalendar() {
     navigate("/calendar");
@@ -97,6 +173,9 @@ function Home() {
   }
   function handleClickPreference() {
     navigate("/preference");
+  }
+  function handleClickDetails() {
+    navigate("/details");
   }
   return (
     <>
@@ -114,6 +193,49 @@ function Home() {
               }}
             />
             <Box sx={buttonText}>Menu</Box>
+          </Box>
+        </Box>
+        <Box sx={conHome}>
+          <Box sx={twin}>
+            <Box sx={firstLayer}>
+              <Box sx={secondLayer}>
+                <Typography sx={inputTag}>Date</Typography>
+                <Box sx={squareDate} onClick={handleClickCalendar}>
+                  <Typography sx={inputTag}>30/06/23</Typography>
+                </Box>
+              </Box>
+            </Box>
+            <Box sx={firstLayer}>
+              <Box sx={secondLayer}>
+                <Typography sx={inputTag}>Weather</Typography>
+                <Box sx={squareWeather} onClick={handleClickWeather}>
+                  <Typography sx={inputTag}>35°C</Typography>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+          <Box sx={showcase}>
+            <Typography sx={inputTag}>Today's outfit</Typography>
+            <Box sx={squareHome} onClick={handleClickDetails}>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={outfitImages} />
+              </Box>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={outfitImages} />
+              </Box>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={outfitImages} />
+              </Box>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={outfitImages} />
+              </Box>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={outfitImages} />
+              </Box>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={outfitImages} />
+              </Box>
+            </Box>
           </Box>
         </Box>
       </Box>{" "}
