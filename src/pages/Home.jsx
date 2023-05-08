@@ -94,11 +94,17 @@ const conHome = {
   display: "flex",
   flexDirection: "column",
   marginTop: "100px",
+  "@media screen and (max-width: 1100px)": {
+    width: "70vw",
+  },
 };
 const twin = {
   display: "flex",
   flexDirection: "row",
   width: "50vw",
+  "@media screen and (max-width: 1100px)": {
+    width: "70vw",
+  },
 };
 const showcase = {
   width: "50vw",
@@ -106,6 +112,9 @@ const showcase = {
   justifyContent: "center",
   textAlign: "center",
   flexDirection: "column",
+  "@media screen and (max-width: 1100px)": {
+    width: "70vw",
+  },
 };
 const firstLayer = {
   width: "70%",
@@ -113,6 +122,9 @@ const firstLayer = {
 const secondLayer = {
   marginBottom: "10px",
   width: "120px",
+  "@media screen and (max-width: 1100px)": {
+    width: "85px",
+  },
 };
 const squareDate = {
   width: "100%",
@@ -147,6 +159,7 @@ const outfitImages = {
   height: "auto",
   border: "3px solid #32174d",
   borderRadius: "10px",
+  objectFit: "cover",
 };
 
 function Home() {
