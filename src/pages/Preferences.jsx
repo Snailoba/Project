@@ -89,12 +89,21 @@ const inputTag = {
     fontSize: "20px",
   },
 };
+const conPref = {
+  display: "flex",
+  flexDirection: "row",
+  marginTop: "100px",
+
+  "@media screen and (max-width: 1100px)": {
+    flexDirection: "column",
+    width: "70vw",
+  },
+};
 const squarePref = {
   width: "15em",
   height: "15em",
   backgroundColor: "#eed9c4",
-  border: "5px solid #eed9c4",
-  boxShadow: "inset 0 0 0 3px #32174d",
+  boxShadow: "inset 0 0 0 3px #eed9c4, inset 0 0 0 6px #32174d",
   borderRadius: "10px",
   marginRight: "20px",
   marginBottom: "20px",
@@ -115,16 +124,6 @@ const buttonTextPref = {
   fontSize: "25px",
   "@media screen and (max-width: 1100px)": {
     fontSize: "20px",
-  },
-};
-const conPref = {
-  display: "flex",
-  flexDirection: "row",
-  marginTop: "100px",
-
-  "@media screen and (max-width: 1100px)": {
-    flexDirection: "column",
-    width: "70vw",
   },
 };
 const blocPref = {
@@ -194,22 +193,22 @@ function Preferences() {
             <Typography sx={inputTag}>Favorites</Typography>
             <Box sx={blocPref}>
               <Box sx={squarePref} onClick={handleClickDetails}>
-                <Box sx={buttonTextPref}>2023/03/11</Box>
+                <Box sx={buttonTextPref}>Outfit 2023/03/11</Box>
               </Box>
               <Box sx={squarePref} onClick={handleClickDetails}>
-                <Box sx={buttonTextPref}>2023/04/17</Box>
+                <Box sx={buttonTextPref}>Outfit 2023/04/17</Box>
               </Box>
               <Box sx={squarePref} onClick={handleClickDetails}>
-                <Box sx={buttonTextPref}>2023/05/12</Box>
+                <Box sx={buttonTextPref}>Outfit 2023/05/12</Box>
               </Box>
               <Box sx={squarePref} onClick={handleClickDetails}>
-                <Box sx={buttonTextPref}>2023/06/21</Box>
+                <Box sx={buttonTextPref}>Outfit 2023/06/21</Box>
               </Box>
               <Box sx={squarePref} onClick={handleClickDetails}>
-                <Box sx={buttonTextPref}>2023/10/29</Box>
+                <Box sx={buttonTextPref}>Outfit 2023/10/29</Box>
               </Box>
               <Box sx={squarePref} onClick={handleClickDetails}>
-                <Box sx={buttonTextPref}>2023/11/01</Box>
+                <Box sx={buttonTextPref}>Outfit 2023/11/01</Box>
               </Box>
             </Box>
           </Box>
@@ -218,22 +217,22 @@ function Preferences() {
             <Typography sx={inputTag}>Avoided</Typography>
             <Box sx={blocPref}>
               <Box sx={squarePref} onClick={handleClickDetails}>
-                <Box sx={buttonTextPref}>2023/05/18</Box>
+                <Box sx={buttonTextPref}>Outfit 2023/05/18</Box>
               </Box>
               <Box sx={squarePref} onClick={handleClickDetails}>
-                <Box sx={buttonTextPref}>2023/05/25</Box>
+                <Box sx={buttonTextPref}>Outfit 2023/05/25</Box>
               </Box>
               <Box sx={squarePref} onClick={handleClickDetails}>
-                <Box sx={buttonTextPref}>2023/07/10</Box>
+                <Box sx={buttonTextPref}>Outfit 2023/07/10</Box>
               </Box>
               <Box sx={squarePref} onClick={handleClickDetails}>
-                <Box sx={buttonTextPref}>2023/08/04</Box>
+                <Box sx={buttonTextPref}>Outfit 2023/08/04</Box>
               </Box>
               <Box sx={squarePref} onClick={handleClickDetails}>
-                <Box sx={buttonTextPref}>2023/08/16</Box>
+                <Box sx={buttonTextPref}>Outfit 2023/08/16</Box>
               </Box>
               <Box sx={squarePref} onClick={handleClickDetails}>
-                <Box sx={buttonTextPref}>2023/09/23</Box>
+                <Box sx={buttonTextPref}>Outfit 2023/09/23</Box>
               </Box>
             </Box>
           </Box>
@@ -246,7 +245,7 @@ function Preferences() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={modalStyle}>
-          <Box sx={{ backgroundColor: "black" }}>
+          <Box>
             <Box sx={menuButton}>
               <img
                 src="assets/hex.svg"

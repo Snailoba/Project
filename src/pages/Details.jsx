@@ -81,13 +81,75 @@ const menuImage = {
   paddingRight: "13px",
   right: 0,
 };
-const inputTag = {
-  fontFamily: "Inika",
-  color: "black",
-  textAlign: "left",
-  fontSize: "25px",
+const conDetails = {
+  display: "flex",
+  flexDirection: "column",
+  marginTop: "100px",
+  width: "65vw",
+
   "@media screen and (max-width: 1100px)": {
-    fontSize: "20px",
+    width: "70vw",
+  },
+};
+const favavo = {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "space-between",
+  width: "100%",
+  marginBottom: "10px",
+
+  "@media screen and (max-width: 1100px)": {
+    width: "70vw",
+  },
+};
+const squareDetails = {
+  width: "100%",
+  height: "66vh",
+  backgroundColor: "#702963",
+  borderRadius: "10px",
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  overflow: "hidden",
+
+  "@media screen and (max-width: 1100px)": {
+    gridTemplateColumns: "repeat(2, 1fr)",
+    height: "95vh",
+  },
+};
+const imag = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  height: "33vh",
+  "@media screen and (max-width: 1100px)": {
+    height: "32vh",
+  },
+};
+const detailImages = {
+  width: "75%",
+  height: "75%",
+  border: "3px solid #eed9c4",
+  borderRadius: "10px",
+  objectFit: "cover",
+};
+const favavoButtons = {
+  backgroundColor: "#E25822",
+  fontFamily: "Inika",
+  fontSize: "20px",
+  height: "10%",
+  width: "18%",
+  color: "black",
+
+  ":hover": {
+    backgroundColor: "#702963",
+    color: "white",
+  },
+  ":focus": {
+    outline: "none",
+  },
+  "@media screen and (max-width: 1100px)": {
+    fontSize: "12px",
   },
 };
 
@@ -134,6 +196,36 @@ function Details() {
             <Box sx={buttonText}>Menu</Box>
           </Box>
         </Box>
+        <Box sx={conDetails}>
+          <Box sx={favavo}>
+            <Button variant="text" sx={favavoButtons}>
+              Favorite
+            </Button>
+            <Button variant="text" sx={favavoButtons}>
+              Avoid
+            </Button>
+          </Box>
+          <Box sx={squareDetails}>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+          </Box>
+        </Box>
       </Box>{" "}
       <Modal
         open={open}
@@ -142,7 +234,7 @@ function Details() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={modalStyle}>
-          <Box sx={{ backgroundColor: "black" }}>
+          <Box>
             <Box sx={menuButton}>
               <img
                 src="assets/hex.svg"

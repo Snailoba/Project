@@ -88,7 +88,74 @@ const inputTag = {
   fontSize: "25px",
   "@media screen and (max-width: 1100px)": {
     fontSize: "20px",
+    color: "white",
   },
+};
+const conCombos = {
+  display: "flex",
+  flexDirection: "row",
+  marginTop: "100px",
+  width: "85vw",
+
+  "@media screen and (max-width: 1100px)": {
+    flexDirection: "column",
+    width: "90vw",
+  },
+};
+const columns = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "65vw",
+
+  "@media screen and (max-width: 1100px)": {
+    width: "100%",
+  },
+};
+const comboHeader = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "100%",
+  marginBottom: "10px",
+
+  "@media screen and (max-width: 1100px)": {
+    width: "70vw",
+    position: "absolute",
+  },
+};
+const squareCombos = {
+  width: "90%",
+  height: "75vh",
+  backgroundColor: "#702963",
+  borderRadius: "10px",
+  display: "flex",
+  flexDirection: "column",
+  overflow: "hidden",
+  marginBottom: "10px",
+
+  "@media screen and (max-width: 1100px)": {
+    height: "25vh",
+    boxShadow: "inset 0 0 0 3px  #702963, inset 0 0 0 6px #eed9c4",
+  },
+};
+const imag = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  maxHeight: "100%",
+  overflow: "hidden",
+  "@media screen and (max-width: 1100px)": {
+    display: "none",
+  },
+};
+const comboImages = {
+  width: "75%",
+  height: "75%",
+  border: "3px solid #eed9c4",
+  borderRadius: "10px",
+  objectFit: "cover",
 };
 
 function Combinations() {
@@ -116,6 +183,9 @@ function Combinations() {
   function handleClickPreference() {
     navigate("/preference");
   }
+  function handleClickDetails() {
+    navigate("/details");
+  }
   return (
     <>
       <Box>
@@ -134,6 +204,68 @@ function Combinations() {
             <Box sx={buttonText}>Menu</Box>
           </Box>
         </Box>
+        <Box sx={conCombos}>
+          <Box sx={columns}>
+            <Box sx={comboHeader}>
+              <Typography sx={inputTag}>Today's outfit</Typography>
+            </Box>
+            <Box sx={squareCombos} onClick={handleClickDetails}>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={comboImages} />
+              </Box>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={comboImages} />
+              </Box>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={comboImages} />
+              </Box>
+            </Box>
+          </Box>
+          <Box sx={columns}>
+            <Box sx={comboHeader}>
+              <Typography sx={inputTag}>Today's alternate</Typography>
+            </Box>
+            <Box sx={squareCombos} onClick={handleClickDetails}>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={comboImages} />
+              </Box>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={comboImages} />
+              </Box>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={comboImages} />
+              </Box>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={comboImages} />
+              </Box>
+            </Box>
+          </Box>
+          <Box sx={columns}>
+            <Box sx={comboHeader}>
+              <Typography sx={inputTag}>Tomorrow's outfit</Typography>
+            </Box>
+            <Box sx={squareCombos} onClick={handleClickDetails}>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={comboImages} />
+              </Box>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={comboImages} />
+              </Box>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={comboImages} />
+              </Box>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={comboImages} />
+              </Box>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={comboImages} />
+              </Box>
+              <Box sx={imag}>
+                <img src="assets/sample.jpg" style={comboImages} />
+              </Box>
+            </Box>
+          </Box>
+        </Box>
       </Box>{" "}
       <Modal
         open={open}
@@ -142,7 +274,7 @@ function Combinations() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={modalStyle}>
-          <Box sx={{ backgroundColor: "black" }}>
+          <Box>
             <Box sx={menuButton}>
               <img
                 src="assets/hex.svg"

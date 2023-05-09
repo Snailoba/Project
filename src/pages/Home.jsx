@@ -142,21 +142,30 @@ const squareWeather = {
 };
 const squareHome = {
   width: "100%",
-  height: "65vh",
+  height: "66vh",
   backgroundColor: "#eed9c4",
   borderRadius: "10px",
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",
   overflow: "hidden",
+
+  "@media screen and (max-width: 1100px)": {
+    gridTemplateColumns: "repeat(2, 1fr)",
+    height: "95vh",
+  },
 };
 const imag = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  height: "33vh",
+  "@media screen and (max-width: 1100px)": {
+    height: "32vh",
+  },
 };
 const outfitImages = {
-  maxWidth: "75%",
-  height: "auto",
+  width: "75%",
+  height: "75%",
   border: "3px solid #32174d",
   borderRadius: "10px",
   objectFit: "cover",
@@ -259,7 +268,7 @@ function Home() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={modalStyle}>
-          <Box sx={{ backgroundColor: "black" }}>
+          <Box>
             <Box sx={menuButton}>
               <img
                 src="assets/hex.svg"

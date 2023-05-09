@@ -113,18 +113,6 @@ const topSection = {
     width: "70vw",
   },
 };
-const categories = {
-  width: "50vw",
-  display: "flex",
-  justifyContent: "center",
-  textAlign: "center",
-  flexDirection: "column",
-  width: "100%",
-
-  "@media screen and (max-width: 1100px)": {
-    width: "70vw",
-  },
-};
 const squareInven = {
   width: "100%",
   height: "66vh",
@@ -310,67 +298,66 @@ function Inventory() {
               Submit
             </Button>
           </Box>
-          <Box sx={categories}>
-            <Box sx={squareInven}>
-              <Box sx={imag}>
-                <img
-                  src="assets/sample.jpg"
-                  style={categoryImages}
-                  onClick={handleClickUpper}
-                />
-                <Box sx={categoryTagOne} onClick={handleClickUpper}>
-                  <Typography sx={categoryText}>Upper Body</Typography>
-                </Box>
+
+          <Box sx={squareInven}>
+            <Box sx={imag}>
+              <img
+                src="assets/sample.jpg"
+                style={categoryImages}
+                onClick={handleClickUpper}
+              />
+              <Box sx={categoryTagOne} onClick={handleClickUpper}>
+                <Typography sx={categoryText}>Upper Body</Typography>
               </Box>
-              <Box sx={imag}>
-                <img
-                  src="assets/sample.jpg"
-                  style={categoryImages}
-                  onClick={handleClickLower}
-                />
-                <Box sx={categoryTagOne} onClick={handleClickLower}>
-                  <Typography sx={categoryText}>Lower Body</Typography>
-                </Box>
+            </Box>
+            <Box sx={imag}>
+              <img
+                src="assets/sample.jpg"
+                style={categoryImages}
+                onClick={handleClickLower}
+              />
+              <Box sx={categoryTagOne} onClick={handleClickLower}>
+                <Typography sx={categoryText}>Lower Body</Typography>
               </Box>
-              <Box sx={imag}>
-                <img
-                  src="assets/sample.jpg"
-                  style={categoryImages}
-                  onClick={handleClickOuter}
-                />
-                <Box sx={categoryTagOne} onClick={handleClickOuter}>
-                  <Typography sx={categoryText}>Outer Layer</Typography>
-                </Box>
+            </Box>
+            <Box sx={imag}>
+              <img
+                src="assets/sample.jpg"
+                style={categoryImages}
+                onClick={handleClickOuter}
+              />
+              <Box sx={categoryTagOne} onClick={handleClickOuter}>
+                <Typography sx={categoryText}>Outer Layer</Typography>
               </Box>
-              <Box sx={imag}>
-                <img
-                  src="assets/sample.jpg"
-                  style={categoryImages}
-                  onClick={handleClickShoes}
-                />
-                <Box sx={categoryTagTwo} onClick={handleClickShoes}>
-                  <Typography sx={categoryText}>Shoes & Socks</Typography>
-                </Box>
+            </Box>
+            <Box sx={imag}>
+              <img
+                src="assets/sample.jpg"
+                style={categoryImages}
+                onClick={handleClickShoes}
+              />
+              <Box sx={categoryTagTwo} onClick={handleClickShoes}>
+                <Typography sx={categoryText}>Shoes & Socks</Typography>
               </Box>
-              <Box sx={imag}>
-                <img
-                  src="assets/sample.jpg"
-                  style={categoryImages}
-                  onClick={handleClickHats}
-                />
-                <Box sx={categoryTagTwo} onClick={handleClickHats}>
-                  <Typography sx={categoryText}>Hats & Others</Typography>
-                </Box>
+            </Box>
+            <Box sx={imag}>
+              <img
+                src="assets/sample.jpg"
+                style={categoryImages}
+                onClick={handleClickHats}
+              />
+              <Box sx={categoryTagTwo} onClick={handleClickHats}>
+                <Typography sx={categoryText}>Hats & Others</Typography>
               </Box>
-              <Box sx={imag}>
-                <img
-                  src="assets/sample.jpg"
-                  style={categoryImages}
-                  onClick={handleClickAccessories}
-                />
-                <Box sx={categoryTagTri} onClick={handleClickAccessories}>
-                  <Typography sx={categoryText}>Accessories</Typography>
-                </Box>
+            </Box>
+            <Box sx={imag}>
+              <img
+                src="assets/sample.jpg"
+                style={categoryImages}
+                onClick={handleClickAccessories}
+              />
+              <Box sx={categoryTagTri} onClick={handleClickAccessories}>
+                <Typography sx={categoryText}>Accessories</Typography>
               </Box>
             </Box>
           </Box>
@@ -383,7 +370,7 @@ function Inventory() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={modalStyle}>
-          <Box sx={{ backgroundColor: "black" }}>
+          <Box>
             <Box sx={menuButton}>
               <img
                 src="assets/hex.svg"

@@ -81,14 +81,42 @@ const menuImage = {
   paddingRight: "13px",
   right: 0,
 };
-const inputTag = {
-  fontFamily: "Inika",
-  color: "black",
-  textAlign: "left",
-  fontSize: "25px",
+const conCate = {
+  display: "flex",
+  flexDirection: "column",
+  marginTop: "100px",
+  width: "85vw",
+
   "@media screen and (max-width: 1100px)": {
-    fontSize: "20px",
+    width: "90vw",
   },
+};
+const displayArea = {
+  display: "grid",
+  width: "100%",
+  gridTemplateColumns: "repeat(4, 1fr)",
+  overflow: "hidden",
+
+  "@media screen and (max-width: 1100px)": {
+    gridTemplateColumns: "repeat(2, 1fr)",
+  },
+};
+const imag = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  height: "33vh",
+  width: "100%",
+  "@media screen and (max-width: 1100px)": {
+    height: "32vh",
+  },
+};
+const detailImages = {
+  width: "80%",
+  height: "80%",
+  border: "3px solid #32174d",
+  borderRadius: "10px",
+  objectFit: "cover",
 };
 
 function LowerBody() {
@@ -134,6 +162,58 @@ function LowerBody() {
             <Box sx={buttonText}>Menu</Box>
           </Box>
         </Box>
+        <Box sx={conCate}>
+          <Box sx={displayArea}>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+            <Box sx={imag}>
+              <img src="assets/sample.jpg" style={detailImages} />
+            </Box>
+          </Box>
+        </Box>
       </Box>{" "}
       <Modal
         open={open}
@@ -142,7 +222,7 @@ function LowerBody() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={modalStyle}>
-          <Box sx={{ backgroundColor: "black" }}>
+          <Box>
             <Box sx={menuButton}>
               <img
                 src="assets/hex.svg"
