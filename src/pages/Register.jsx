@@ -1,5 +1,5 @@
 import { Box, Button } from "@mui/material";
-import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Stubborn.css";
 
 const container = {
@@ -66,6 +66,11 @@ function Register() {
   const submitPassword = (e) => {
     e.preventDefault();
   };
+
+  const navigate = useNavigate();
+  function handleClickLogin() {
+    navigate("/login");
+  }
   return (
     <Box>
       <Box sx={container} onSubmit={submitPassword}>
@@ -99,7 +104,12 @@ function Register() {
           <input type="text" className="texfil" style={type} />
         </Box>
         <Box sx={space} />
-        <Button type="submit" variant="contained" sx={submitButton}>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={submitButton}
+          onClick={handleClickLogin}
+        >
           Register
         </Button>
       </Box>
