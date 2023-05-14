@@ -1,13 +1,10 @@
 const express = require("express");
 const app = express();
-const port = 6000;
+const port = 2000;
 const mysql = require("mysql2");
-const bodyParser = require("body-parser");
 const cors = require("cors");
-const { check, validationResult } = require("express-validator");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const cookieParser = require("cookie-parser");
+const login = require("./endpoints/login");
+const register = require("./endpoints/register");
 
 const connection = mysql.createConnection({
   host: "server2.bsthun.com",
@@ -17,9 +14,30 @@ const connection = mysql.createConnection({
   database: "lab_blank01_143kapi",
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+connection.connect(() => {
+  console.log("Database is connected");
 });
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("This is working");
+});
+
+app.post("/log", login);
+
+app.post("/reg", register);
+
+// app.get("/inventory", inventory);
+
+// app.get("/combinations", combo);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

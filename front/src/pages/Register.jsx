@@ -1,5 +1,7 @@
+import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./Stubborn.css";
 
 const container = {
@@ -36,6 +38,21 @@ const submitButton = {
     outline: "none",
   },
 };
+const loginButton = {
+  backgroundColor: "#702963",
+  fontFamily: "Inika",
+  fontSize: "9px",
+  height: "5%",
+  width: "40%",
+  color: "white",
+  ":hover": {
+    backgroundColor: "#32174d",
+    color: "white",
+  },
+  ":focus": {
+    outline: "none",
+  },
+};
 const type = {
   backgroundColor: "#EED9C4",
   fontFamily: "Inika",
@@ -63,8 +80,31 @@ const space = {
 };
 
 function Register() {
-  const submitPassword = (e) => {
-    e.preventDefault();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const instance = axios.create({
+    withCredentials: true,
+  });
+
+  const validatePassword = () => {
+    return password === confirmPassword;
+  };
+
+  const handleSubmit = async () => {
+    if (!validatePassword()) return;
+    try {
+      const response = await instance.post("http://localhost:2000/reg", {
+        username,
+        password,
+      });
+      if (response.data.success) {
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const navigate = useNavigate();
@@ -73,7 +113,7 @@ function Register() {
   }
   return (
     <Box>
-      <Box sx={container} onSubmit={submitPassword}>
+      <Box sx={container}>
         <Box>
           <Box sx={logo}>
             <img
@@ -88,29 +128,51 @@ function Register() {
           </Box>
         </Box>
         <Box sx={inputContainer}>
-          <label for="texfil" style={inputTag}>
+          <label htmlFor="texfil" style={inputTag}>
             Username
           </label>
-          <input type="text" className="texfil" style={type} />
+          <input
+            type="text"
+            className="texfil"
+            style={type}
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
           <Box sx={space} />
-          <label for="texfil" style={inputTag}>
+          <label htmlFor="texfil" style={inputTag}>
             Password
           </label>
-          <input type="text" className="texfil" style={type} />
+          <input
+            type="text"
+            className="texfil"
+            style={type}
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
           <Box sx={space} />
-          <label for="texfil" style={inputTag}>
+          <label htmlFor="texfil" style={inputTag}>
             Confirm Password
           </label>
-          <input type="text" className="texfil" style={type} />
+          <input
+            type="text"
+            className="texfil"
+            style={type}
+            value={confirmPassword}
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+            }}
+          />
         </Box>
         <Box sx={space} />
-        <Button
-          type="submit"
-          variant="contained"
-          sx={submitButton}
-          onClick={handleClickLogin}
-        >
+        <Button variant="text" sx={submitButton} onClick={handleSubmit}>
           Register
+        </Button>
+        <Button variant="text" sx={loginButton} onClick={handleClickLogin}>
+          Already made an account?
         </Button>
       </Box>
     </Box>

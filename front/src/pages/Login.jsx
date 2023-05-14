@@ -1,5 +1,7 @@
+import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Axios from "axios";
 import "./Stubborn.css";
 
 const container = {
@@ -88,12 +90,12 @@ function Login() {
           </Box>
         </Box>
         <Box sx={inputContainer}>
-          <label for="texfil" style={inputTag}>
+          <label htmlFor="texfil" style={inputTag}>
             Username
           </label>
           <input type="text" className="texfil" style={type} required />
           <Box sx={space} />
-          <label for="texfil" style={inputTag}>
+          <label htmlFor="texfil" style={inputTag}>
             Password
           </label>
           <input type="text" className="texfil" style={type} required />

@@ -16,13 +16,14 @@ import Shoes from "./pages/Shoes";
 import Hats from "./pages/Hats";
 import OuterLayer from "./pages/OuterLayer";
 import Accessories from "./pages/Accessories";
+import Genesis from "./pages/Genesis";
 import "./App.css";
 
 const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Register />} />
+        <Route path="/" element={<Genesis />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/weather" element={<Weather />} />
         <Route path="/combinations" element={<Combinations />} />
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/details" element={<Details />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/upper" element={<UpperBody />} />
         <Route path="/lower" element={<LowerBody />} />
         <Route path="/outer" element={<OuterLayer />} />
