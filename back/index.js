@@ -42,3 +42,7 @@ app.post("/reg", register);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+// process.on("uncaughtException", function (err) {
+//   console.log(err);
+// });
