@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Trio/Home";
-import Calendar from "./pages/Trio/Calendar";
+import Events from "./pages/Trio/Events";
 import Weather from "./pages/Trio/Weather";
 import Combinations from "./pages/Outfits/Combinations";
 import Inventory from "./pages/Outfits/Inventory";
@@ -24,7 +24,7 @@ const App = () => {
     <>
       <Routes>
         <Route path="/" element={<Genesis />} />
-        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/events" element={<Events />} />
         <Route path="/weather" element={<Weather />} />
         <Route path="/combinations" element={<Combinations />} />
         <Route path="/inventory" element={<Inventory />} />

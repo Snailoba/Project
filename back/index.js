@@ -35,9 +35,15 @@ app.post("/log", login);
 
 app.post("/reg", register);
 
-// app.get("/inventory", inventory);
+// app.get("/cal", calendar);
 
-// app.get("/combinations", combo);
+// app.get("/weat", weather);
+
+// app.get("/sub", submit);
+
+// app.get("/inv", inventory);
+
+// app.get("/comb", combo);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

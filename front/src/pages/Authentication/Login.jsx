@@ -80,17 +80,18 @@ function Login() {
         username,
         password,
       });
-      console.log(response);
+      console.log(response.data);
       if (response.data.success) {
         navigate("/home");
-      } else {
-        Swal.fire("Wrong credentials", "", "error");
+      } else if (response.data.errors) {
+        Swal.fire("Error!", `${response.data.errors[0].msg}`, "error");
       }
     } catch (error) {
       if (error.response) {
         console.log(error.response.data);
         console.log(error.response.status);
         console.log(error.response.headers);
+        setPassword("");
         Swal.fire("Error!", `Error Code: ${error.response.status}`, "error");
       }
     }

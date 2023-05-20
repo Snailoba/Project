@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Typography, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Menu from "../../components/Menu";
@@ -134,8 +134,20 @@ function Home() {
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
 
-  function handleClickCalendar() {
-    navigate("/calendar");
+  const [currentDay, setCurrentDay] = useState("");
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+    const year = String(currentDate.getFullYear()).slice(-2);
+
+    const formattedDate = `${day}/${month}/${year}`;
+    setCurrentDay(formattedDate);
+  }, []);
+
+  function handleClickEvents() {
+    navigate("/events");
   }
   function handleClickWeather() {
     navigate("/weather");
@@ -167,8 +179,8 @@ function Home() {
             <Box sx={firstLayer}>
               <Box sx={secondLayer}>
                 <Typography sx={inputTag}>Date</Typography>
-                <Box sx={squareDate} onClick={handleClickCalendar}>
-                  <Typography sx={inputTag}>30/06/23</Typography>
+                <Box sx={squareDate} onClick={handleClickEvents}>
+                  <Typography sx={inputTag}>{currentDay}</Typography>
                 </Box>
               </Box>
             </Box>

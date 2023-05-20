@@ -1,0 +1,42 @@
+.MuiDateCalendar-root {
+  background-color: #eed9c4;
+  border-radius: 5px;
+  border: 5px solid #32174d;
+}
+.MuiDateCalendar-root .MuiDayCalendar-weekDayLabel {
+  font-family: "Inika";
+  font-size: 15px;
+}
+.MuiDateCalendar-root .MuiPickersDay-root {
+  font-family: "Inika";
+  font-size: 15px;
+}
+.MuiDateCalendar-root .MuiPickersDay-root:focus.Mui-selected {
+  will-change: background-color;
+  background-color: #702963;
+}
+.MuiDateCalendar-root .MuiPickersDay-root.Mui-selected:hover {
+  will-change: background-color;
+  background-color: #702963;
+}
+.MuiDateCalendar-root .MuiPickersDay-root.Mui-selected {
+  will-change: background-color;
+  background-color: #702963;
+}
+.MuiDateCalendar-root .MuiPickersCalendarHeader-labelContainer {
+  font-family: "Inika";
+  background-color: #702963;
+  border-radius: 10px;
+  color: white;
+  padding-left: 6px;
+}
+.MuiDateCalendar-root .MuiPickersYear-yearButton.Mui-selected {
+  color: black;
+  background-color: #e25822;
+}
+@media screen and (max-width: 1100px) {
+  .MuiDateCalendar-root {
+    width: 70vw;
+    max-height: 358px;
+  }
+}

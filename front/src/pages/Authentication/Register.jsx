@@ -3,6 +3,7 @@ import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Stubborn.css";
+import Swal from "sweetalert2";
 
 const container = {
   display: "flex",
@@ -99,8 +100,11 @@ function Register() {
         username,
         password,
       });
+      console.log(response.data);
       if (response.data.success) {
         navigate("/login");
+      } else if (response.data.errors) {
+        Swal.fire("Error!", `${response.data.errors[0].msg}`, "error");
       }
     } catch (error) {
       if (error.response) {

@@ -22,7 +22,11 @@ module.exports = [
     .notEmpty()
     .withMessage("password cannot be empty")
     .isLength({ min: 8 })
-    .withMessage("password must be at least 8 characters"),
+    .withMessage("password must be at least 8 characters")
+    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/)
+    .withMessage(
+      "password must contain at least one uppercase letter, one lowercase letter, and one number"
+    ),
   async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;

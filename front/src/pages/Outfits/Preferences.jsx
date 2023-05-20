@@ -42,6 +42,7 @@ const inputTag = {
   color: "black",
   textAlign: "left",
   fontSize: "25px",
+  marginLeft: "10px",
   "@media screen and (max-width: 1100px)": {
     fontSize: "20px",
   },
@@ -60,10 +61,9 @@ const squarePref = {
   width: "15em",
   height: "15em",
   backgroundColor: "#eed9c4",
-  boxShadow: "inset 0 0 0 3px #eed9c4, inset 0 0 0 6px #32174d",
+  border: "5px solid #32174d",
   borderRadius: "10px",
-  marginRight: "20px",
-  marginBottom: "20px",
+  margin: "10px",
 
   "@media screen and (max-width: 1100px)": {
     display: "inline-block",

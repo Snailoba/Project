@@ -6,13 +6,17 @@
   "scripts": {
     "dev": "vite --port 3000",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "host": "vite --host"
   },
   "dependencies": {
     "@emotion/styled": "^11.10.6",
     "@fontsource/girassol": "^4.5.8",
     "@fontsource/inika": "^4.5.11",
+    "@mui/lab": "^5.0.0-alpha.130",
     "@mui/material": "^5.12.2",
+    "@mui/x-date-pickers": "^6.5.0",
+    "dayjs": "^1.11.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.0",

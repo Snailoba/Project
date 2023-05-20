@@ -68,8 +68,8 @@ function Menu({ open = false, handleClose = () => {} }) {
   function handleClickHome() {
     navigate("/home");
   }
-  function handleClickCalendar() {
-    navigate("/calendar");
+  function handleClickEvents() {
+    navigate("/events");
   }
   function handleClickWeather() {
     navigate("/weather");
@@ -119,7 +119,7 @@ function Menu({ open = false, handleClose = () => {} }) {
               />
             </Box>
           </Button>
-          <Button variant="text" sx={butto} onClick={handleClickCalendar}>
+          <Button variant="text" sx={butto} onClick={handleClickEvents}>
             <Typography sx={menuText}>Calendar</Typography>
             <Box sx={menuImage}>
               <img
