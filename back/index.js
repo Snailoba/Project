@@ -3,8 +3,15 @@ const app = express();
 const port = 2000;
 const mysql = require("mysql2");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+require("dotenv").config();
 const login = require("./endpoints/login");
 const register = require("./endpoints/register");
+const create = require("./endpoints/create");
+const show = require("./endpoints/show");
+const edit = require("./endpoints/edit");
+const remove = require("./endpoints/remove");
+const check = require("./endpoints/check");
 
 const connection = mysql.createConnection({
   host: "server2.bsthun.com",
@@ -27,6 +34,8 @@ app.use(
 
 app.use(express.json());
 
+app.use(cookieParser());
+
 app.get("/", (req, res) => {
   res.send("This is working");
 });
@@ -34,6 +43,16 @@ app.get("/", (req, res) => {
 app.post("/log", login);
 
 app.post("/reg", register);
+
+app.post("/tes", create);
+app.get("/tes", show);
+app.patch("/tes", edit);
+app.delete("/tes", remove);
+
+app.get("/check", check);
+// app.patch("/tes", edit);
+// app.delete("/tes", remove);
+// app.get("/tes", show)
 
 // app.get("/cal", calendar);
 

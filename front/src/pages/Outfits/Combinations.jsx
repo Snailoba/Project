@@ -118,8 +118,7 @@ function Combinations() {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
 
-  const handleOpen = () => setOpenModal(true);
-  const handleClose = () => setOpenModal(false);
+  const handleOpen = () => setOpenModal(!openModal);
 
   function handleClickDetails() {
     navigate("/details");
@@ -140,7 +139,7 @@ function Combinations() {
               }}
             />
             <Box sx={buttonText}>Menu</Box>
-            <Menu open={openModal} handleClose={handleClose} />
+            <Menu open={openModal} handleClose={handleOpen} />
           </Box>
         </Box>
         <Box sx={conCombos}>

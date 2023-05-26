@@ -34,9 +34,3 @@
   color: black;
   background-color: #e25822;
 }
-@media screen and (max-width: 1100px) {
-  .MuiDateCalendar-root {
-    width: 70vw;
-    max-height: 358px;
-  }
-}

@@ -2,6 +2,7 @@ const { check } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const mysql = require("mysql2");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 const secret = process.env.SECRET;
@@ -40,14 +41,14 @@ module.exports = [
             if (numRows == 0) {
               return res.json({
                 success: false,
-                message: "This account does not exist",
+                message: "This account doesn't exist",
               });
             }
             const isMatch = await bcrypt.compare(password, rows[0].password);
             if (!isMatch) {
               return res.json({
                 success: false,
-                message: "the password is not correct",
+                message: "The password is incorrect",
               });
             } else {
               const token = jwt.sign(

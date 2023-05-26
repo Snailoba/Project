@@ -17,6 +17,7 @@ import Hats from "./pages/Categories/Hats";
 import OuterLayer from "./pages/Categories/OuterLayer";
 import Accessories from "./pages/Categories/Accessories";
 import Genesis from "./pages/Authentication/Genesis";
+import Testing from "./pages/Testing";
 import "./App.css";
 
 const App = () => {
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/shoes" element={<Shoes />} />
         <Route path="/hats" element={<Hats />} />
         <Route path="/accessories" element={<Accessories />} />
+        <Route path="/test" element={<Testing />} />
       </Routes>
     </>
   );

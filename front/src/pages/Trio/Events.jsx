@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Typography, Box, Button } from "@mui/material";
+import { Typography, Box, Button, TextField } from "@mui/material";
 import { DateCalendar } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Menu from "../../components/Menu";
+import EventCard from "../../components/EventCard";
+import axios from "axios";
 import "./Calendar.css";
 
 const menuContainer = {
@@ -40,15 +42,6 @@ const buttonText = {
   color: "black",
   fontSize: "25px",
 };
-const inputTag = {
-  fontFamily: "Inika",
-  color: "black",
-  textAlign: "left",
-  fontSize: "25px",
-  "@media screen and (max-width: 1100px)": {
-    fontSize: "20px",
-  },
-};
 const conCalen = {
   display: "flex",
   flexDirection: "row",
@@ -67,7 +60,7 @@ const eventButton = {
   fontFamily: "Inika",
   fontSize: "20px",
   height: "10%",
-  width: "35%",
+  width: "40%",
   color: "black",
 
   ":hover": {
@@ -108,28 +101,137 @@ const eventDisplay = {
   justifyContent: "center",
   alignItems: "center",
 };
-const eventCard = {
+const modalBG = {
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  backgroundColor: "rgba(0, 0, 0, 0.4)",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+};
+const createModal = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "35vw",
+  height: "auto",
   backgroundColor: "#eed9c4",
   border: "5px solid #32174d",
   borderRadius: "5px",
-  margin: "10px",
-  width: "20vw",
-  height: "25vh",
+  padding: "10px",
   display: "flex",
   flexDirection: "column",
-  alignItems: "center",
   justifyContent: "center",
+
   "@media screen and (max-width: 1100px)": {
-    width: "38vw",
-    height: "25vh",
+    width: "75vw",
   },
+};
+const createButtons = {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "space-between",
+  width: "100%",
+  marginTop: "10px",
+};
+const submitButton = {
+  backgroundColor: "#E25822",
+  fontFamily: "Inika",
+  fontSize: "20px",
+
+  width: "20%",
+  color: "black",
+  ":hover": {
+    backgroundColor: "#702963",
+    color: "white",
+  },
+  ":focus": {
+    outline: "none",
+  },
+  "@media screen and (max-width: 1100px)": {
+    width: "50%",
+    margin: "15px",
+    fontSize: "15px",
+  },
+};
+const space = {
+  height: "10px",
 };
 
 function Events() {
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    const fetchUserId = async () => {
+      try {
+        const response = await instance.get("http://localhost:2000/check");
+        const decodedId = response.data.decoded;
+        setUserId(decodedId);
+      } catch (error) {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+          Swal.fire("Error!", `Error Code: ${error.response.status}`, "error");
+        }
+      }
+    };
+    fetchUserId();
+  }, []);
+
   const [openModal, setOpenModal] = useState(false);
 
-  const handleOpen = () => setOpenModal(true);
-  const handleClose = () => setOpenModal(false);
+  const handleOpen = () => setOpenModal(!openModal);
+
+  const [openCreate, setOpenCreate] = useState(false);
+  const handleOpenCreate = () => setOpenCreate(!openCreate);
+  const handleStop = (e) => {
+    e.stopPropagation();
+  };
+
+  const [titleInput, setTitleInput] = useState("");
+  const [descriptionInput, setDescriptionInput] = useState("");
+  const [events, setEvents] = useState([]);
+
+  function handleInputTitle(e) {
+    setTitleInput(e.target.value);
+  }
+  function handleInputDescription(e) {
+    setDescriptionInput(e.target.value);
+  }
+
+  const instance = axios.create({
+    withCredentials: true,
+  });
+
+  const handleAdd = async () => {
+    try {
+      const newEvent = { title: titleInput, description: descriptionInput };
+      setEvents([...events, newEvent]);
+      setTitleInput("");
+      setDescriptionInput("");
+      handleOpenCreate();
+      console.log(`${titleInput}`);
+      console.log(`${descriptionInput}`);
+      const response = await instance.post("http://localhost:2000/tes", {
+        titleInput,
+        descriptionInput,
+      });
+      console.log(response.data);
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        Swal.fire("Error!", `Error Code: ${error.response.status}`, "error");
+      }
+    }
+  };
 
   return (
     <>
@@ -147,7 +249,7 @@ function Events() {
               }}
             />
             <Box sx={buttonText}>Menu</Box>
-            <Menu open={openModal} handleClose={handleClose} />
+            <Menu open={openModal} handleClose={handleOpen} />
           </Box>
         </Box>
         <Box sx={conCalen}>
@@ -157,20 +259,59 @@ function Events() {
             </LocalizationProvider>
           </Box>
           <Box sx={eventSection}>
-            <Button variant="text" sx={eventButton}>
-              Add event +
+            <Button sx={eventButton} onClick={handleOpenCreate}>
+              + Add New Tasks
             </Button>
             <Box sx={eventDisplay}>
-              <Box sx={eventCard}>
-                <Typography sx={inputTag}>Event 26/05/23</Typography>
-              </Box>
-              <Box sx={eventCard}>
-                <Typography sx={inputTag}>Event 26/05/23</Typography>
-              </Box>
+              {events.map((event, index) => {
+                return (
+                  <EventCard
+                    key={index}
+                    title={event.title}
+                    description={event.description}
+                  />
+                );
+              })}
             </Box>
           </Box>
         </Box>
       </Box>{" "}
+      <Box sx={{ display: openCreate ? "flex" : "none" }}>
+        <Box sx={modalBG} onClick={handleOpenCreate}>
+          <Box sx={createModal} onClick={handleStop}>
+            <TextField
+              id="title"
+              label="Date of event"
+              variant="outlined"
+              fullWidth
+              value={titleInput}
+              onChange={handleInputTitle}
+            />
+            <Box sx={space}></Box>
+            <TextField
+              id="description"
+              label="Event details"
+              variant="outlined"
+              multiline
+              fullWidth
+              value={descriptionInput}
+              onChange={handleInputDescription}
+            />
+            <Box sx={createButtons}>
+              <Button
+                variant="contained"
+                sx={submitButton}
+                onClick={handleOpenCreate}
+              >
+                Close
+              </Button>
+              <Button variant="contained" sx={submitButton} onClick={handleAdd}>
+                Add
+              </Button>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
     </>
   );
 }
