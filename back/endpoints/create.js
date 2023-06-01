@@ -15,6 +15,7 @@ module.exports = [
     .notEmpty()
     .withMessage("description cannot be empty"),
   async (req, res) => {
+    const owner = req.body.userId;
     const title = req.body.titleInput;
     const description = req.body.descriptionInput;
 
@@ -22,8 +23,8 @@ module.exports = [
     console.log(`Description ${description}`);
     try {
       connection.query(
-        `INSERT INTO testing (title, description) VALUES (?,?)`,
-        [title, description],
+        `INSERT INTO events (owner, title, description) VALUES (?,?,?)`,
+        [owner, title, description],
         (err, rows) => {
           if (err) {
             res.json({

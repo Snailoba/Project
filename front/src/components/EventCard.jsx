@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, TextField, Button } from "@mui/material";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const eventCard = {
   backgroundColor: "#eed9c4",
@@ -7,7 +9,7 @@ const eventCard = {
   borderRadius: "5px",
   margin: "10px",
   width: "20vw",
-  height: "25vh",
+  minHeight: "25vh",
   display: "flex",
   flexDirection: "column",
   overflow: "hidden",
@@ -151,7 +153,7 @@ const modalBG = {
   alignItems: "center",
 };
 
-function EventCard({ title, description }) {
+function EventCard({ title, description, id, onEventUpdate, onEventDelete }) {
   const [openDetail, setOpenDetail] = useState(false);
   const handleOpenDetail = () => setOpenDetail(!openDetail);
 
@@ -167,9 +169,9 @@ function EventCard({ title, description }) {
   };
 
   const [titleEdit, setTitleEdit] = useState("");
-
   const [descriptionEdit, setDescriptionEdit] = useState("");
   const [events, setEvents] = useState([]);
+  const idEdit = parseInt(id);
 
   function handleEditTitle(e) {
     setTitleEdit(e.target.value);
@@ -178,13 +180,61 @@ function EventCard({ title, description }) {
     setDescriptionEdit(e.target.value);
   }
 
-  function handleEdit() {
-    const newEvent = { title: titleEdit, description: descriptionEdit };
-    setEvents([...events, newEvent]);
-    setTitleEdit("");
-    setDescriptionEdit("");
-    handleOpenEdit();
-  }
+  const instance = axios.create({
+    withCredentials: true,
+  });
+
+  const handleEdit = async () => {
+    try {
+      const newEvent = {
+        title: titleEdit,
+        description: descriptionEdit,
+      };
+      setEvents([...events, newEvent]);
+      setTitleEdit("");
+      setDescriptionEdit("");
+      handleClose();
+      console.log(`${titleEdit}`);
+      console.log(`${descriptionEdit}`);
+      console.log(idEdit);
+      const response = await instance.patch("http://localhost:2000/eve", {
+        titleEdit,
+        descriptionEdit,
+        idEdit,
+      });
+      console.log(response);
+      const editedEvent = {
+        id: idEdit,
+        title: titleEdit,
+        description: descriptionEdit,
+      };
+      onEventUpdate(editedEvent);
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        Swal.fire("Error!", `Error Code: ${error.response.status}`, "error");
+      }
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      const response = await instance.delete(
+        `http://localhost:2000/eve?id=${id}`
+      );
+      console.log(response.data);
+      onEventDelete(id);
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        Swal.fire("Error!", `Error Code: ${error.response.status}`, "error");
+      }
+    }
+  };
 
   return (
     <>
@@ -216,7 +266,11 @@ function EventCard({ title, description }) {
               >
                 Edit
               </Button>
-              <Button variant="contained" sx={submitButton}>
+              <Button
+                variant="contained"
+                sx={submitButton}
+                onClick={handleDelete}
+              >
                 Delete
               </Button>
             </Box>
@@ -231,6 +285,7 @@ function EventCard({ title, description }) {
               label="Date of event"
               variant="outlined"
               fullWidth
+              value={titleEdit}
               onChange={handleEditTitle}
             />
             <Box sx={space}></Box>
@@ -240,6 +295,7 @@ function EventCard({ title, description }) {
               variant="outlined"
               multiline
               fullWidth
+              value={descriptionEdit}
               onChange={handleEditDescription}
             />
             <Box sx={editButtons}>
@@ -250,7 +306,11 @@ function EventCard({ title, description }) {
               >
                 Close
               </Button>
-              <Button variant="contained" sx={submitButton}>
+              <Button
+                variant="contained"
+                sx={submitButton}
+                onClick={handleEdit}
+              >
                 Edit
               </Button>
             </Box>

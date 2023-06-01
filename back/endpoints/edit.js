@@ -15,16 +15,16 @@ module.exports = [
     .notEmpty()
     .withMessage("description cannot be empty"),
   async (req, res) => {
-    const title = req.body.titleInput;
-    const description = req.body.descriptionInput;
-    const id = req.body.id;
+    const title = req.body.titleEdit;
+    const description = req.body.descriptionEdit;
+    const id = req.body.idEdit;
 
     console.log(`Title ${title}`);
     console.log(`Description ${description}`);
     console.log(`Id ${id}`);
 
     connection.query(
-      "UPDATE testing SET title = ?, description = ? WHERE id = ?",
+      "UPDATE events SET title = ?, description = ? WHERE id = ?",
       [title, description, id],
       (err, rows) => {
         if (err) {

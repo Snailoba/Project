@@ -83,8 +83,8 @@ function Login() {
       console.log(response.data);
       if (response.data.success) {
         navigate("/home");
-      } else if (response.data.errors) {
-        Swal.fire("Error!", `${response.data.errors[0].msg}`, "error");
+      } else {
+        Swal.fire("Error!", `${response.data.message}`, "error");
       }
     } catch (error) {
       if (error.response) {

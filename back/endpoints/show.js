@@ -11,13 +11,13 @@ const connection = mysql.createConnection({
 
 module.exports = [
   async (req, res) => {
-    const id = req.body.id;
+    const owner = req.query.userId;
 
-    console.log(`Id ${id}`);
+    console.log(`Owner ${owner}`);
     try {
       connection.query(
-        `SELECT * FROM testing WHERE id = ?`,
-        [id],
+        `SELECT * FROM events WHERE owner = ?`,
+        [owner],
         (err, rows) => {
           if (err) {
             res.json({
@@ -31,8 +31,9 @@ module.exports = [
               res.json({
                 success: true,
                 data: {
-                  message: "Event successfully fetched",
+                  rows,
                 },
+                message: "Events successfully fetched",
               });
             } else {
               res.json({

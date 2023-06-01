@@ -14,7 +14,7 @@ module.exports = [
     const id = req.query.id;
 
     console.log(`Id ${id}`);
-    connection.query(`DELETE FROM testing WHERE id = ?`, [id], (err, rows) => {
+    connection.query(`DELETE FROM events WHERE id = ?`, [id], (err, rows) => {
       if (err) {
         res.json({
           success: false,

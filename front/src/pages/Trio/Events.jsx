@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Typography, Box, Button, TextField } from "@mui/material";
 import { DateCalendar } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -6,6 +6,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Menu from "../../components/Menu";
 import EventCard from "../../components/EventCard";
 import axios from "axios";
+import Swal from "sweetalert2";
 import "./Calendar.css";
 
 const menuContainer = {
@@ -79,7 +80,6 @@ const eventButton = {
 const calen = {
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
   alignItems: "center",
   "@media screen and (max-width: 1100px)": {
     width: "100%",
@@ -164,26 +164,6 @@ const space = {
 };
 
 function Events() {
-  const [userId, setUserId] = useState("");
-
-  useEffect(() => {
-    const fetchUserId = async () => {
-      try {
-        const response = await instance.get("http://localhost:2000/check");
-        const decodedId = response.data.decoded;
-        setUserId(decodedId);
-      } catch (error) {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-          Swal.fire("Error!", `Error Code: ${error.response.status}`, "error");
-        }
-      }
-    };
-    fetchUserId();
-  }, []);
-
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpen = () => setOpenModal(!openModal);
@@ -197,6 +177,39 @@ function Events() {
   const [titleInput, setTitleInput] = useState("");
   const [descriptionInput, setDescriptionInput] = useState("");
   const [events, setEvents] = useState([]);
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    const fetchUserId = async () => {
+      try {
+        const response = await instance.get("http://localhost:2000/check");
+        const decodedId = response.data.decoded;
+        setUserId(decodedId);
+        console.log(decodedId);
+        if (decodedId !== undefined && decodedId !== "undefined") {
+          const response = await instance.get(
+            `http://localhost:2000/eve?userId=${decodedId}`
+          );
+          console.log(response.data);
+          console.log(response.data.message);
+          const size = Object.keys(response.data.data.rows).length;
+          const data = [];
+          for (let i = 0; i < size; i++) {
+            data.push(response.data.data.rows[i]);
+          }
+          setEvents(data);
+        }
+      } catch (error) {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+          Swal.fire("Error!", `Error Code: ${error.response.status}`, "error");
+        }
+      }
+    };
+    fetchUserId();
+  }, []);
 
   function handleInputTitle(e) {
     setTitleInput(e.target.value);
@@ -211,14 +224,19 @@ function Events() {
 
   const handleAdd = async () => {
     try {
-      const newEvent = { title: titleInput, description: descriptionInput };
+      const newEvent = {
+        title: titleInput,
+        description: descriptionInput,
+      };
       setEvents([...events, newEvent]);
       setTitleInput("");
       setDescriptionInput("");
       handleOpenCreate();
       console.log(`${titleInput}`);
       console.log(`${descriptionInput}`);
-      const response = await instance.post("http://localhost:2000/tes", {
+      console.log(`${userId}`);
+      const response = await instance.post("http://localhost:2000/eve", {
+        userId,
         titleInput,
         descriptionInput,
       });
@@ -231,6 +249,28 @@ function Events() {
         Swal.fire("Error!", `Error Code: ${error.response.status}`, "error");
       }
     }
+  };
+
+  const handleEventEdit = (editedEvent) => {
+    setEvents((prevEvents) => {
+      const updatedEvents = prevEvents.map((event) => {
+        if (event.id === editedEvent.id) {
+          return editedEvent;
+        }
+        return event;
+      });
+      return updatedEvents;
+    });
+    console.log(editedEvent);
+  };
+
+  const handleEventDelete = (deletedEventId) => {
+    setEvents((prevEvents) => {
+      const updatedEvents = prevEvents.filter(
+        (event) => event.id !== deletedEventId
+      );
+      return updatedEvents;
+    });
   };
 
   return (
@@ -260,7 +300,7 @@ function Events() {
           </Box>
           <Box sx={eventSection}>
             <Button sx={eventButton} onClick={handleOpenCreate}>
-              + Add New Tasks
+              + Add New Events
             </Button>
             <Box sx={eventDisplay}>
               {events.map((event, index) => {
@@ -269,6 +309,9 @@ function Events() {
                     key={index}
                     title={event.title}
                     description={event.description}
+                    id={event.id}
+                    onEventUpdate={handleEventEdit}
+                    onEventDelete={handleEventDelete}
                   />
                 );
               })}

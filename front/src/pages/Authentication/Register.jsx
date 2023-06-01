@@ -101,6 +101,11 @@ function Register() {
         password,
       });
       console.log(response.data);
+      if (response.data.success) {
+        navigate("/login");
+      } else {
+        Swal.fire("Error!", `${response.data.message}`, "error");
+      }
     } catch (error) {
       if (error.response) {
         console.log(error.response.data);

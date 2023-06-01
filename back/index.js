@@ -44,17 +44,17 @@ app.post("/log", login);
 
 app.post("/reg", register);
 
-app.post("/tes", create);
-app.get("/tes", show);
-app.patch("/tes", edit);
-app.delete("/tes", remove);
-
 app.get("/check", check);
+
+app.post("/eve", create);
+app.get("/eve", show);
+app.patch("/eve", edit);
+app.delete("/eve", remove);
+
+// app.post("/tes", create);
+// app.get("/tes", show);
 // app.patch("/tes", edit);
 // app.delete("/tes", remove);
-// app.get("/tes", show)
-
-// app.get("/cal", calendar);
 
 // app.get("/weat", weather);
 
