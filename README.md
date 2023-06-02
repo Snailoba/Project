@@ -39,7 +39,7 @@ Backend -> ./back
 
 ## API Endpoints
 
-**Post**
+### **Post**
 
 ### Register
 
@@ -124,7 +124,7 @@ POST /eve
 }
 ```
 
-**Get**
+### **Get**
 
 ### Retrieve user's id
 
@@ -193,7 +193,7 @@ http://localhost:2000/eve?userId=2
 }
 ```
 
-**Patch**
+### **Patch**
 
 ### Edit event
 
@@ -222,7 +222,7 @@ PATCH /eve
 }
 ```
 
-**Delete**
+### **Delete**
 
 
 ### Delete event
