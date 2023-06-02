@@ -67,7 +67,7 @@ POST /reg
 }
 ```
 
-##### Log in
+#### Log in
 
 `
 POST /log
@@ -97,7 +97,7 @@ POST /log
 }
 ```
 
-##### Create event
+#### Create event
 
 `
 POST /eve
@@ -126,7 +126,7 @@ POST /eve
 
 **Get**
 
-##### Retrieve user's id
+#### Retrieve user's id
 
 `
 GET /check
@@ -144,7 +144,7 @@ GET /check
 }
 ```
 
-##### Display logged in user's events
+#### Display logged in user's events
 
 `
 GET /eve?userId=${decodedId}
@@ -195,7 +195,7 @@ http://localhost:2000/eve?userId=2
 
 **Patch**
 
-##### Edit event
+#### Edit event
 
 `
 PATCH /eve
@@ -225,7 +225,7 @@ PATCH /eve
 **Delete**
 
 
-##### Delete event
+#### Delete event
 
 `
 DELETE /eve?id=${id}
