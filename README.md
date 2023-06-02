@@ -37,17 +37,17 @@ Backend -> ./back
   npm run dev
 ```
 
-### API Endpoints
+## API Endpoints
 
 **Post**
 
-#### Register
+### Register
 
 `
 POST /reg
 `
 
-##### Request body
+#### Request body
 
 ```
 {
@@ -56,7 +56,7 @@ POST /reg
 }
 ```
 
-##### Success response
+#### Success response
 
 ```
 {
@@ -67,13 +67,13 @@ POST /reg
 }
 ```
 
-#### Log in
+### Log in
 
 `
 POST /log
 `
 
-##### Request body
+#### Request body
 
 ```
 {
@@ -82,7 +82,7 @@ POST /log
 }
 ```
 
-##### Success response
+#### Success response
 
 ```
 {
@@ -97,13 +97,13 @@ POST /log
 }
 ```
 
-#### Create event
+### Create event
 
 `
 POST /eve
 `
 
-##### Request body
+#### Request body
 
 ```
 {
@@ -113,7 +113,7 @@ POST /eve
 }
 ```
 
-##### Success response
+#### Success response
 
 ```
 {
@@ -126,15 +126,15 @@ POST /eve
 
 **Get**
 
-#### Retrieve user's id
+### Retrieve user's id
 
 `
 GET /check
 `
 
-##### No request body
+#### No request body
 
-##### Success response
+#### Success response
 
 ```
 {
@@ -144,19 +144,19 @@ GET /check
 }
 ```
 
-#### Display logged in user's events
+### Display logged in user's events
 
 `
 GET /eve?userId=${decodedId}
 `
 
-##### Query param
+#### Query param
 
 ```
 http://localhost:2000/eve?userId=2
 ```
 
-##### Success response
+#### Success response
 
 ```
 {
@@ -195,13 +195,13 @@ http://localhost:2000/eve?userId=2
 
 **Patch**
 
-#### Edit event
+### Edit event
 
 `
 PATCH /eve
 `
 
-##### Request body
+#### Request body
 
 ```
 {
@@ -211,7 +211,7 @@ PATCH /eve
 }
 ```
 
-##### Success response
+#### Success response
 
 ```
 {
@@ -225,19 +225,19 @@ PATCH /eve
 **Delete**
 
 
-#### Delete event
+### Delete event
 
 `
 DELETE /eve?id=${id}
 `
 
-##### Query param
+#### Query param
 
 ```
 http://localhost:2000/eve?id=13
 ```
 
-##### Success response
+#### Success response
 
 ```
 {
